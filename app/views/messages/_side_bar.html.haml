@@ -2,13 +2,13 @@
   .side--bar__user--name
     .side--bar__user--name__items
       %p.side--bar__user--name__items__name
-        ryoma
+        = current_user.name
       %ul.side--bar__user--name__items__icon
         %li.side--bar__user--name__items__icon__new
           = link_to "#" do
             = icon("far", "edit")
         %li.side--bar__user--name__items__icon__edit
-          = link_to "#" do
+          = link_to edit_user_path(current_user) do
             = icon("fas", "cog")
   .side--bar__group--list
     = link_to "#", class: "group" do
