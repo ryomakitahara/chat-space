@@ -2,33 +2,23 @@
   .main__group--info 
     .main__group--info__left 
       %h2.main__group--info__left__name
-        test
+        = @group.name
       %ul.main__group--info__left__name__member
         Member :
         %li.main__group--info__left__name__member__name
-          ryoma
+          - @group.users.each do |user|
+            = user.name
     .main__group--info__edit
-      = link_to "#", class: "link" do
+      = link_to edit_group_path(@group), class: "link" do
         .main__group--info__edit__btn
           Edit
   .main__message--list
-    .main__message--list__name
-      ryoma 
-      .main__message--list__name__time
-        2019/11/20(wed) 17:43:01
-    .main__message--list__messages
-      おはよう!
-    .main__message--list__name
-      ryoma
-      .main__message--list__name__time
-        2019/11/20(wed) 17:43:34
-    .main__message--list__messages
-      今日は夜から雨
+    = render @messages
   .main__message--form
-    %form.main__message--form__field
-      %input-box.main__message--form__field__input
-        %input{type: "text", class: "main__message--form__field__input__text", placeholder: "type a message"}
-        %label{class: "main__message--form__field__input__image"}
-          = icon("fas", "image")
-          %input{type: "file", class: "main__message--form__field__input__image__file"}
-      %input{type: "submit", class: "main__message--form__field__submit--btn", value: "Send"}
+    = form_for [@group, @message] do |f|
+      .main__message--form__field__input
+        = f.text_field :content, class: 'main__message--form__field__input__text', placeholder: 'type a message'
+        = f.label :image, class: 'main__message--form__field__input__image' do
+          = icon('fas', 'image')
+          = f.file_field :image, class: 'main__message--form__field__input__image__file'
+      = f.submit 'Send', class: 'submit--btn'

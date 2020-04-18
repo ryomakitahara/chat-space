@@ -127,14 +127,15 @@
         margin-bottom: 40px;
       }
     }
+
     &__message--form {
       height: 90px;
       background-color: #d2d2d2;
       padding: 20px 40px;
-      
-      &__field {
+
+      .new_message {
         display: flex;
-        &__input {
+        .main__message--form__field__input {
           width: 100%;
           display: flex;
           position: relative;
@@ -154,7 +155,7 @@
             }
           }
         }
-        &__submit--btn {
+        .submit--btn {
           height: 50px;
           width: 100px;
           padding: 0 30px;
